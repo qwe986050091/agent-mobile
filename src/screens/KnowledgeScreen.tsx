@@ -27,10 +27,10 @@ interface UploadingState {
   percent: number
 }
 
-const ALLOWED = /\.(txt|md|text|markdown)$/i
-const MAX_SIZE = 5 * 1024 * 1024
+const ALLOWED = /\.(txt|md|text|markdown|pdf|doc|docx|xls|xlsx|ppt|pptx|html|htm)$/i
+const MAX_SIZE = 20 * 1024 * 1024
 
-/** 知识库管理页：上传 .txt/.md 文本 → 后端切块向量化（RAG），对话时可被检索引用 */
+/** 知识库管理页：上传文档（txt/md/pdf/office/html）→ 后端切块向量化（RAG），对话时可被检索引用 */
 export default function KnowledgeScreen() {
   const [docs, setDocs] = useState<KnowledgeDoc[]>([])
   const [loading, setLoading] = useState(true)
@@ -61,11 +61,11 @@ export default function KnowledgeScreen() {
     const asset = result.assets[0]
 
     if (!ALLOWED.test(asset.name)) {
-      Alert.alert('不支持的文件类型', '仅支持 .txt / .md / .text / .markdown 文本文件')
+      Alert.alert('不支持的文件类型', '仅支持 txt / md / PDF / Word / Excel / PPT / HTML 文档')
       return
     }
     if (asset.size != null && asset.size > MAX_SIZE) {
-      Alert.alert('文件过大', '文件不能超过 5MB')
+      Alert.alert('文件过大', '文件不能超过 20MB')
       return
     }
 
@@ -139,9 +139,9 @@ export default function KnowledgeScreen() {
       <View style={styles.uploadCard}>
         <Pressable style={styles.uploadZone} onPress={pickAndUpload} disabled={!!uploading}>
           <Ionicons name="cloud-upload-outline" size={32} color="#4d86ff" />
-          <Text style={styles.uploadText}>点击选择文本文件上传</Text>
+          <Text style={styles.uploadText}>点击选择文档上传</Text>
           <Text style={styles.uploadHint}>
-            支持 .txt / .md 文本文件；上传后自动切分、向量化，对话时可被 AI 检索引用
+            支持 txt / md / PDF / Word / Excel / PPT / HTML；上传后自动切分、向量化，对话时可被 AI 检索引用
           </Text>
         </Pressable>
 

@@ -6,13 +6,19 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "runtimeVersion": "1.0.0",
+    "updates": {
+      "url": "https://api.zlfshop.cn/updates",
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
+    },
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "package": "com.zlf.agentai",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#F9B9D3",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -23,7 +29,19 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-sqlite"
+      "expo-sqlite",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "需要访问相册以发送图片给 AI 助手"
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#4d86ff"
+        }
+      ]
     ],
     "extra": {
       "eas": {

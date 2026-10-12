@@ -39,3 +39,12 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# OTA 发布中间产物
+.ota-export/
+.ota-release/
+.ota-release.tar.gz
+update-dist/
+
+# 本机 pnpm store（.npmrc 的 store-dir 指到项目内，约 500MB，不该进仓库）
+.pnpm-store/
