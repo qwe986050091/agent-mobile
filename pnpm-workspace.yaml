@@ -1,4 +1,0 @@
-storeDir: D:/code/agent_mobile/.pnpm-store
-allowBuilds:
-  dtrace-provider: false
-  protobufjs: true

@@ -9,12 +9,9 @@ concurrency:
 jobs:
   typecheck:
     runs-on: ubuntu-latest
-    env:
-      # 本仓 .npmrc 把 pnpm store 指向本机 Windows 绝对路径，Linux runner 上必须覆盖，
-      # 否则 pnpm 会在仓库内建出一个形如 "D:\code\agent_mobile\.pnpm-store" 的怪目录
-      npm_config_store_dir: /tmp/pnpm-store
     steps:
       - uses: actions/checkout@v4
+      # 本仓 package.json 没有 packageManager 字段，故显式指定版本（与 lockfileVersion 9.0 对齐）
       - uses: pnpm/action-setup@v4
         with:
           version: 9

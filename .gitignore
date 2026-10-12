@@ -48,3 +48,9 @@ update-dist/
 
 # 本机 pnpm store（.npmrc 的 store-dir 指到项目内，约 500MB，不该进仓库）
 .pnpm-store/
+
+# 机器专属的包管理器配置：store 绝对路径指向本机 D 盘，只对本机有意义。
+# 入库会让 CI 的 pnpm 去解析一个没有 packages 字段的 workspace 文件而报错，
+# 也会让 EAS 上传包平白胀大。保留在本地即可（本地行为不变）。
+.npmrc
+pnpm-workspace.yaml
